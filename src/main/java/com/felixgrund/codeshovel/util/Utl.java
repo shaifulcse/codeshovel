@@ -25,11 +25,14 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 public class Utl {
 
 	public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy, HH:mm");
+
+	private static final String OUTPUT_BASE_DIR = System.getenv("OUTPUT_DIR") != null ?
+			System.getenv("OUTPUT_DIR") : (System.getProperty("user.dir") + "/output");
+
 
 	private static final Logger log = LoggerFactory.getLogger(Utl.class);
 
@@ -125,7 +128,7 @@ public class Utl {
 	public static void writeOutputFile(String subdir, String commitName, String filePath,
 				String functionId, String repoName, String content, String fileExtension) {
 
-		String baseDir = Optional.ofNullable( System.getenv("OUTPUT_DIR") ).orElse( System.getProperty("user.dir") + "/output" ) + "/" + subdir;
+		String baseDir = OUTPUT_BASE_DIR + "/" + subdir;
 		String commitNameShort = commitName.substring(0, 5);
 		String targetDirPath = baseDir + "/" + repoName;
 		if (functionId != null) {

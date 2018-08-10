@@ -83,9 +83,9 @@
 			<version>1.2.2</version>
 		</dependency>
 		<dependency>
-			<groupId>com.esotericsoftware.kryo</groupId>
+			<groupId>com.esotericsoftware</groupId>
 			<artifactId>kryo</artifactId>
-			<version>2.22</version>
+			<version>4.0.2</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-digester</groupId>

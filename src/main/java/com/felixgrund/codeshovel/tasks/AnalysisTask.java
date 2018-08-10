@@ -9,12 +9,11 @@ import com.felixgrund.codeshovel.exceptions.NoParserFoundException;
 import com.felixgrund.codeshovel.exceptions.ParseException;
 import com.felixgrund.codeshovel.interpreters.CrossFileInterpreter;
 import com.felixgrund.codeshovel.interpreters.InFileInterpreter;
-import com.felixgrund.codeshovel.parser.AbstractParser;
 import com.felixgrund.codeshovel.parser.Yfunction;
 import com.felixgrund.codeshovel.parser.Yparser;
 import com.felixgrund.codeshovel.services.RepositoryService;
 import com.felixgrund.codeshovel.wrappers.StartEnvironment;
-import com.felixgrund.codeshovel.util.ParserFactory;
+import com.felixgrund.codeshovel.util.CachingParserFactory;
 import com.felixgrund.codeshovel.util.Utl;
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.Repository;
@@ -156,7 +155,7 @@ public class AnalysisTask {
 		String startFileContent = repositoryService.findFileContent(commit, this.filePath);
 		Utl.checkNotNull("startFileContent", startFileContent);
 
-		Yparser startParser = ParserFactory.getParser(this.startEnv, this.filePath, startFileContent, commit);
+		Yparser startParser = CachingParserFactory.getParser(this.startEnv, this.filePath, startFileContent, commit);
 
 		this.startFunction = startParser.findFunctionByNameAndLine(this.functionName, this.functionStartLine);
 		Utl.checkNotNull("startFunctionNode", this.startFunction);
@@ -224,7 +223,7 @@ public class AnalysisTask {
 
 		ycommit = createBaseYcommit(commit);
 		if (ycommit.getFileContent() != null) {
-			Yparser parser = ParserFactory.getParser(this.startEnv, ycommit.getFilePath(), ycommit.getFileContent(), ycommit.getCommit());
+			Yparser parser = CachingParserFactory.getParser(this.startEnv, ycommit.getFilePath(), ycommit.getFileContent(), ycommit.getCommit());
 			ycommit.setParser(parser);
 			Yfunction matchedFunction = parser.findFunctionByOtherFunction(compareFunction);
 

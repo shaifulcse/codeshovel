@@ -11,9 +11,8 @@ import com.felixgrund.codeshovel.parser.Yparser;
 import com.felixgrund.codeshovel.tasks.AnalysisTask;
 import com.felixgrund.codeshovel.tasks.GitRangeLogTask;
 import com.felixgrund.codeshovel.tasks.RecursiveAnalysisTask;
-import com.felixgrund.codeshovel.util.ParserFactory;
+import com.felixgrund.codeshovel.util.CachingParserFactory;
 import com.felixgrund.codeshovel.util.Utl;
-import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -59,7 +58,7 @@ public class ShovelExecution {
 		Yresult yresult = new Yresult();
 		printFileStart(filePath);
 		String startFileContent = startEnv.getRepositoryService().findFileContent(startEnv.getStartCommit(), filePath);
-		Yparser parser = ParserFactory.getParser(startEnv, filePath, startFileContent, startEnv.getStartCommit());
+		Yparser parser = CachingParserFactory.getParser(startEnv, filePath, startFileContent, startEnv.getStartCommit());
 		for (Yfunction method : parser.getAllFunctions()) {
 			try {
 				if (startEnv.getFunctionName() == null || startEnv.getFunctionName().equals(method.getName())) {

@@ -6,7 +6,7 @@ import com.felixgrund.codeshovel.changes.Ychange;
 import com.felixgrund.codeshovel.parser.Yfunction;
 import com.felixgrund.codeshovel.parser.Yparser;
 import com.felixgrund.codeshovel.wrappers.StartEnvironment;
-import com.felixgrund.codeshovel.util.ParserFactory;
+import com.felixgrund.codeshovel.util.CachingParserFactory;
 import org.eclipse.jgit.lib.Repository;
 import com.felixgrund.codeshovel.wrappers.Commit;
 
@@ -38,7 +38,7 @@ public abstract class AbstractInterpreter {
 		Yparser ret = null;
 		String fileContent = repositoryService.findFileContent(commit, filePath);
 		if (fileContent != null) {
-			ret = ParserFactory.getParser(this.startEnv, filePath, fileContent, commit);
+			ret = CachingParserFactory.getParser(this.startEnv, filePath, fileContent, commit);
 		}
 		return ret;
 	}

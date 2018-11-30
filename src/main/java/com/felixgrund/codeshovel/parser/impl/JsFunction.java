@@ -3,15 +3,12 @@ package com.felixgrund.codeshovel.parser.impl;
 import com.felixgrund.codeshovel.entities.Yexceptions;
 import com.felixgrund.codeshovel.entities.Ymodifiers;
 import com.felixgrund.codeshovel.entities.Yparameter;
-import com.felixgrund.codeshovel.entities.Yreturn;
 import com.felixgrund.codeshovel.parser.AbstractFunction;
 import com.felixgrund.codeshovel.parser.Yfunction;
 import com.felixgrund.codeshovel.util.Utl;
-import jdk.nashorn.internal.ir.FunctionNode;
-import jdk.nashorn.internal.ir.IdentNode;
-import org.apache.commons.lang3.StringUtils;
-import org.eclipse.jgit.lib.Repository;
 import com.felixgrund.codeshovel.wrappers.Commit;
+import org.mozilla.javascript.ast.AstNode;
+import org.mozilla.javascript.ast.FunctionNode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,16 +23,16 @@ public class JsFunction extends AbstractFunction<FunctionNode> implements Yfunct
 	@Override
 	public List<Yparameter> getInitialParameters(FunctionNode method) {
 		List<Yparameter> parameters = new ArrayList<>();
-		List<IdentNode> parameterNodes = method.getParameters();
-		for (IdentNode node : parameterNodes) {
-			parameters.add(new Yparameter(node.getName(), Yparameter.TYPE_NONE));
+		List<AstNode> parameterNodes = method.getParams();
+		for (AstNode node : parameterNodes) {
+			parameters.add(new Yparameter(node.getString(), Yparameter.TYPE_NONE));
 		}
 		return parameters;
 	}
 
 	@Override
 	protected String getInitialName(FunctionNode method) {
-		return method.getIdent().getName();
+		return method.getName();
 	}
 
 	@Override
@@ -55,21 +52,18 @@ public class JsFunction extends AbstractFunction<FunctionNode> implements Yfunct
 
 	@Override
 	protected String getInitialBody(FunctionNode method) {
-		FunctionNode node = method;
-		return getSourceFileContent().substring(node.getStart(), node.getFinish());
+		return method.getBody().toSource();
 	}
 
 	@Override
 	protected int getInitialBeginLine(FunctionNode method) {
-		return method.getLineNumber();
+		return method.getFunctionName().getLineno(); // TODO: verify
 	}
 
 	@Override
 	protected int getInitialEndLine(FunctionNode method) {
-		FunctionNode node = method;
-		String fileSource = node.getSource().getString();
-		String sourceTillEndOfNode = fileSource.substring(0, node.getFinish());
-		return Utl.countLineNumbers(sourceTillEndOfNode);
+		int numLines = Utl.countLineNumbers(method.getBody().toSource());
+		return method.getFunctionName().getLineno() + numLines; // TODO: verify
 	}
 
 	@Override

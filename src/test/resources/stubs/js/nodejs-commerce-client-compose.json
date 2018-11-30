@@ -1,0 +1,10 @@
+{
+    "repositoryName": "nodejs-commerce",
+    "filePath": "packages/sdk-client/src/client.js",
+    "functionName": "compose",
+    "functionStartLine": 16,
+    "startCommitName": "f71e9cb71dac7871120b046583d89c204335a8bf",
+    "expectedResult": {
+
+    }
+}

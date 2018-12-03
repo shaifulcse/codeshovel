@@ -1,0 +1,11 @@
+{
+    "repositoryName": "nodejs-commerce",
+    "filePath": "packages/sdk-client/src/client.js",
+    "functionName": "compose",
+    "functionStartLine": 16,
+    "startCommitName": "f71e9cb71dac7871120b046583d89c204335a8bf",
+    "expectedResult": {
+        "bf48c21d225c31f0f9b5441d95f73615ca3dcfdb" : "Ybodychange",
+        "2380028ec4a6a77401b867a51de26a3cb8e8d311" : "Yintroduced"
+    }
+}

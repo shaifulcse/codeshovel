@@ -3,18 +3,17 @@ package com.felixgrund.codeshovel.parser.impl;
 import com.felixgrund.codeshovel.entities.Yexceptions;
 import com.felixgrund.codeshovel.entities.Ymodifiers;
 import com.felixgrund.codeshovel.entities.Yparameter;
-import com.felixgrund.codeshovel.entities.Yreturn;
 import com.felixgrund.codeshovel.parser.AbstractFunction;
 import com.felixgrund.codeshovel.parser.Yfunction;
 import com.felixgrund.codeshovel.util.Utl;
-import jdk.nashorn.internal.ir.FunctionNode;
-import jdk.nashorn.internal.ir.IdentNode;
-import org.apache.commons.lang3.StringUtils;
-import org.eclipse.jgit.lib.Repository;
 import com.felixgrund.codeshovel.wrappers.Commit;
 
 import java.util.ArrayList;
 import java.util.List;
+
+// --add-exports jdk.scripting.nashorn/jdk.nashorn.internal.ir=ALL-UNNAMED --add-exports jdk.scripting.nashorn/jdk.nashorn.internal.ir.visitor=ALL-UNNAMED --add-exports jdk.scripting.nashorn/jdk.nashorn.internal.parser=ALL-UNNAMED --add-exports jdk.scripting.nashorn/jdk.nashorn.internal.runtime=ALL-UNNAMED --add-exports jdk.scripting.nashorn/jdk.nashorn.internal.runtime.options=ALL-UNNAMED
+import jdk.nashorn.internal.ir.FunctionNode;
+import jdk.nashorn.internal.ir.IdentNode;
 
 public class JsFunction extends AbstractFunction<FunctionNode> implements Yfunction {
 

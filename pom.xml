@@ -153,10 +153,13 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.7.0</version>
+				<version>3.8.0</version>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>11</source>
+					<target>11</target>
+					<compilerArgs>
+						<arg>--add-exports jdk.scripting.nashorn/jdk.nashorn.internal.ir=ALL-UNNAMED --add-exports jdk.scripting.nashorn/jdk.nashorn.internal.ir.visitor=ALL-UNNAMED --add-exports jdk.scripting.nashorn/jdk.nashorn.internal.parser=ALL-UNNAMED --add-exports jdk.scripting.nashorn/jdk.nashorn.internal.runtime=ALL-UNNAMED --add-exports jdk.scripting.nashorn/jdk.nashorn.internal.runtime.options=ALL-UNNAMED</arg>
+					</compilerArgs>
 				</configuration>
 			</plugin>
 			<!--<plugin>-->

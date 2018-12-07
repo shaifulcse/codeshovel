@@ -145,7 +145,20 @@
 			<artifactId>jruby-complete</artifactId>
 			<version>9.2.4.0</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.jcabi</groupId>
+			<artifactId>jcabi-aspects</artifactId>
+			<version>0.20.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jcabi</groupId>
+			<artifactId>jcabi-maven-plugin</artifactId>
+			<version>0.14.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -238,6 +251,17 @@
 					<!--</descriptorRefs>-->
 				<!--</configuration>-->
 			<!--</plugin>-->
+			<plugin>
+				<groupId>com.jcabi</groupId>
+				<artifactId>jcabi-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>ajc</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 

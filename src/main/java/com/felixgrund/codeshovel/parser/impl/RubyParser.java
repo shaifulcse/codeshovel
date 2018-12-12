@@ -56,6 +56,32 @@ public class RubyParser extends AbstractParser implements Yparser {
 	}
 
 	@Override
+	public List<Ychange> getMinorChanges(Ycommit commit, Yfunction compareFunction) {
+		List<Ychange> changes = new ArrayList<>();
+		Yreturntypechange yreturntypechange = getReturnTypeChange(commit, compareFunction);
+		Ymodifierchange ymodifierchange = getModifiersChange(commit, compareFunction);
+		Yexceptionschange yexceptionschange = getExceptionsChange(commit, compareFunction);
+		Ybodychange ybodychange = getBodyChange(commit, compareFunction);
+		Yparameterchange yparameterchange = getParametersChange(commit, compareFunction);
+		if (yreturntypechange != null) {
+			changes.add(yreturntypechange);
+		}
+		if (ymodifierchange != null) {
+			changes.add(ymodifierchange);
+		}
+		if (yexceptionschange != null) {
+			changes.add(yexceptionschange);
+		}
+		if (ybodychange != null) {
+			changes.add(ybodychange);
+		}
+		if (yparameterchange != null) {
+			changes.add(yparameterchange);
+		}
+		return changes;
+	}
+
+	@Override
 	public String getAcceptedFileExtension() {
 		return ACCEPTED_FILE_EXTENSION;
 	}

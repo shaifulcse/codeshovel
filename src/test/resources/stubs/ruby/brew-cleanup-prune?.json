@@ -1,0 +1,10 @@
+{
+  "repositoryName": "brew",
+  "filePath": "/Users/jyoo/Desktop/cs448/codeshovel-repos/brew/Library/Homebrew/cleanup.rb",
+  "functionName": "prune?",
+  "functionStartLine": 49,
+  "startCommitName": "79f3ff0a4e5ecf97f6c9fb093e549d04755a09f6",
+  "expectedResult": {
+
+  }
+}

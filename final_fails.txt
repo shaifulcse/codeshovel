@@ -8,3 +8,14 @@ hibernate: 1
 elasticsearch: 2
 hadoop: 0
 commons-io: 0
+
+Z_elasticsearch-BulkRequest-add.json
+Z_jetty-StdErrLog-escape.json
+Z_pmd-AbstractJavaRule-visit.json
+Z_spring-boot-JsonParserFactory-getJsonParser.json
+Z_intellij-community-PositionManagerImpl-createPrepareRequests.json
+Z_mockito-MatchersBinder-bindMatchers.json
+Z_lucene-solr-Field-tokenStream.json
+Z_elasticsearch-RestRequest-method.json
+Z_spring-boot-ConfigurationPropertiesBinder-getBindHandler.json
+Z_hibernate-search-FullTextQueryImpl-setTimeout.json
